@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
+declare var jQuery: any;
+
 @Component({
   selector: 'app-pokemon',
   templateUrl: './pokemon.component.html',
@@ -20,7 +22,6 @@ export class PokemonComponent implements OnInit {
   async ngOnInit() {
 
     this.object = await this.pokemonService.getAllPokemon()
-
     this.arrPokemon = this.object.results;
     console.log(this.arrPokemon);
   }
