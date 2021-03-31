@@ -8,12 +8,22 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor(public modal: NgbModal) {
+  object: any;
+  pokemon: any;
 
-  }
+  constructor(
+    public modal: NgbModal,
+  ) { }
 
   async ngOnInit() {
 
+    // this.object = await this.pokemonService.getAllPokemon()
+    // this.arrPokemon = this.object.results;
+    // console.log(this.arrPokemon);
+
+    // const url = this.object.results[0].url
+    // this.pokemon = await this.pokemonService.getPokemonByUrl(url)
+    // console.log(this.pokemon);
   }
 
 }

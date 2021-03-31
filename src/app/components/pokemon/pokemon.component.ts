@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 declare var jQuery: any;
 
@@ -8,13 +9,18 @@ declare var jQuery: any;
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.scss']
 })
+
+
 export class PokemonComponent implements OnInit {
+
+  @ViewChild('contenido') contenido: ElementRef;
 
   object: any;
   arrPokemon: any[];
   pokemon: any;
 
-  constructor(private pokemonService: PokemonService) {
+  constructor(private pokemonService: PokemonService,
+    public modal: NgbModal) {
     this.arrPokemon = [];
 
   }
@@ -26,11 +32,11 @@ export class PokemonComponent implements OnInit {
     console.log(this.arrPokemon);
   }
 
-  async onClick() {
-    const url = this.object.results[0].url
+  async onClick(url) {
     this.pokemon = await this.pokemonService.getPokemonByUrl(url)
     console.log(this.pokemon);
-
+    this.modal.open(this.contenido)
+    // this.modal.open(this.pokemon.name);
   }
 
 
