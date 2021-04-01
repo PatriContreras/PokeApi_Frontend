@@ -29,15 +29,13 @@ export class PokemonComponent implements OnInit {
   resultado: any;
   types: any[];
   pokemonByType: any[];
+  arrFiltrado: any[];
 
   constructor(private pokemonService: PokemonService,
     public modal: NgbModal,
     private activatedRoute: ActivatedRoute) {
     this.arrPokemon = [];
-    // this.form = new FormGroup({
-    //   name: new FormControl(),
-    //   types: new FormControl(),
-    // })
+
 
   }
 
@@ -45,27 +43,17 @@ export class PokemonComponent implements OnInit {
 
     this.object = await this.pokemonService.getAllPokemon()
     this.arrPokemon = this.object.results;
-    console.log(this.arrPokemon);
+    //console.log(this.arrPokemon);
 
-    this.objTypes = await this.pokemonService.getPokemonsTypes()
+    this.objTypes = await this.pokemonService.getTypes()
     this.arrTypes = this.objTypes.results;
-    console.log('tipos oninit', this.arrTypes);
-    console.log(this.arrTypes[1].name);
+    //console.log('tipos oninit', this.arrTypes);
+    //console.log(this.arrTypes[1].name);
 
     this.types = this.arrTypes.map(type => {
       return type.name
     })
     console.log(this.types);
-
-
-    // for (let i; i <= 20; i++) {
-    //   let type = [];
-    //   let result = this.arrTypes[i].name.push(type)
-    //   return result
-    // }
-
-    // console.log(this.result);
-
   }
 
   async onClick(url) {
@@ -76,11 +64,14 @@ export class PokemonComponent implements OnInit {
     const types = this.pokemon.types
 
     const object = types[0].type;
-    const object1 = types[1].type;
-    console.log(object1.name);
+    //const object1 = types[1].type;
+    console.log(object.name);
 
     this.type = object.name;
     console.log(object.name);
+    this.pokemon.type = this.type;
+    console.log(this.pokemon.type);
+
 
 
     const obj = this.pokemon.sprites;
@@ -102,13 +93,14 @@ export class PokemonComponent implements OnInit {
     }
   }
 
-  onSelect($event) {
+  async onSelect($event) {
 
-    this.arrPokemon = this.arrPokemon.filter(res => {
-      //console.log(res);
-      return res.type.match($event.target.value);
-
-    })
+    // this.objTypes = await this.pokemonService.getPokemonsTypes()
+    // this.arrTypes = this.objTypes.results;
+    // this.types = this.arrTypes.map(type => {
+    //   return type.name
+    // })
+    // console.log('finaltypes', this.types); // Array con los tipos de pokemon
 
   }
 

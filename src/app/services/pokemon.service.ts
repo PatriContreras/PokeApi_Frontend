@@ -29,7 +29,7 @@ export class PokemonService {
     return this.httpClient.get(`${this.baseUrl}/pokemon/:${id}`).toPromise()
   }
 
-  getPokemonsTypes() {
+  getTypes() {
     return this.httpClient.get(`${this.baseUrl}/type/`).toPromise()
   }
 
