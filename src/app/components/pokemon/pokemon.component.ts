@@ -49,6 +49,9 @@ export class PokemonComponent implements OnInit {
       return type.name
     })
 
+    console.log(this.types);
+
+
   }
 
   async onClick(url) {
