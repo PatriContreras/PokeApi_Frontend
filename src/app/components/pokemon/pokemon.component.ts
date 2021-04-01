@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 declare var jQuery: any;
 
@@ -21,11 +22,18 @@ export class PokemonComponent implements OnInit {
   pokemon: any;
   type: string;
   image: string;
+  // form: FormGroup;
+  filteredArr: any[];
+  nombre: string;
 
   constructor(private pokemonService: PokemonService,
     public modal: NgbModal,
     private activatedRoute: ActivatedRoute) {
     this.arrPokemon = [];
+    // this.form = new FormGroup({
+    //   name: new FormControl(),
+    //   types: new FormControl(),
+    // })
 
   }
 
@@ -33,7 +41,7 @@ export class PokemonComponent implements OnInit {
 
     this.object = await this.pokemonService.getAllPokemon()
     this.arrPokemon = this.object.results;
-    //console.log(this.arrPokemon);
+    console.log(this.arrPokemon);
   }
 
   async onClick(url) {
@@ -42,33 +50,26 @@ export class PokemonComponent implements OnInit {
     this.modal.open(this.modalContent)
 
     const types = this.pokemon.types
-    console.log(types[0]);
-    const tipo = types[0].type;
-    this.type = tipo.name;
-    console.log(this.type);
+    const object = types[0].type;
+    this.type = object.name;
 
     const obj = this.pokemon.sprites;
-    console.log(obj.front_shiny);
     this.image = obj.front_shiny;
 
+  }
 
+  search() {
 
+    if (this.nombre == "") {
+      this.ngOnInit();
 
-
-
-
-
-
-    // this.activatedRoute.params.subscribe(async params => {
-    //   console.log(params.id);
-
-    //   this.pokemon = await this.pokemonService.getPokemonComplete(params.id);
-    //   console.log('pokemon completo', this.pokemon);
-
-
-    // })
-
-
+    } else {
+      this.arrPokemon = this.arrPokemon.filter(res => {
+        console.log('respuesta', res);
+        console.log(res.name);
+        return res.name.match(this.nombre);
+      })
+    }
   }
 
 

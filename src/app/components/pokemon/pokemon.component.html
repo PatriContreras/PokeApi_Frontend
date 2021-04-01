@@ -1,21 +1,19 @@
-<p>pokemon works!</p>
+<div class="form-group">
+    <label>Nombre:</label>
+    <input type="text" class="form-control" name="nombre" id="" [(ngModel)]="nombre" (ngModelChange)="search()">
+</div>
+<div class="form-group">
+    <label>Seleccionar por tipo:</label>
+    <select name="types" id="">
+        <option value=""></option>
+        <option value=""></option>
+    </select>
+</div>
+
 
 <div *ngFor="let pokemon of arrPokemon" [id]="pokemon.url" (click)="onClick(pokemon.url)">
     <h1>{{pokemon.name}}</h1>
 </div>
-
-
-<form>
-    <div>
-        <input type="text" name="" id="">
-    </div>
-    <div>
-        <select name="" id="">
-            <option value=""></option>
-            <option value=""></option>
-        </select>
-    </div>
-</form>
 
 <ng-template #modalContent let-modal>
     <div class="modal-header">

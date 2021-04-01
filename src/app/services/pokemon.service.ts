@@ -8,7 +8,10 @@ import { Pokemon } from '../models/pokemon';
 export class PokemonService {
 
   baseUrl: string;
-  arrPokemon: Pokemon[];
+  arrPokemon: any[];
+  filteredPokemon: any[];
+  arrTypes: any[];
+
 
   constructor(private httpClient: HttpClient) {
     this.baseUrl = 'https://pokeapi.co/api/v2';
@@ -25,5 +28,21 @@ export class PokemonService {
   getPokemonComplete(id) {
     return this.httpClient.get(`${this.baseUrl}/pokemon/:${id}`).toPromise()
   }
+
+
+
+  // getPokemonsTypes(types) {
+  //   this.arrTypes = this.arrPokemon.
+  // }
+
+  // return new Promise((resolve, reject) => {
+  //   resolve(this.filteredPokemon = this.arrPokemon.filter(types => {
+  //     return types.type === ptype
+  //   }))
+  // })
+
+  // getPokemonByName() {
+  //   return this.httpClient.get(`${this.baseUrl}/pokemon`)
+  // }
 
 }
