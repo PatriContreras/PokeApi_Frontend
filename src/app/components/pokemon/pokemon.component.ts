@@ -1,8 +1,7 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -29,7 +28,7 @@ export class PokemonComponent implements OnInit {
   types: any[];
   pokemonByType: any[];
   arrFiltrado: any[];
-
+  filteredx: any[];
 
   form: FormGroup
 
@@ -87,7 +86,9 @@ export class PokemonComponent implements OnInit {
 
   }
 
-  search() {
+
+  onChange($event) {
+    console.log($event.target.value);
 
   }
 
