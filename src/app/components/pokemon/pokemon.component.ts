@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -29,12 +30,21 @@ export class PokemonComponent implements OnInit {
   pokemonByType: any[];
   arrFiltrado: any[];
 
+
+  form: FormGroup
+
   constructor(
     private pokemonService: PokemonService,
     public modal: NgbModal,
   ) {
     this.arrPokemon = [];
+
+    this.form = new FormGroup({
+      name: new FormControl(''),
+      type: new FormControl('')
+    })
   }
+
 
   async ngOnInit() {
 
@@ -48,6 +58,18 @@ export class PokemonComponent implements OnInit {
     this.types = this.arrTypes.map(type => {
       return type.name
     })
+
+
+    this.form.controls['name'].valueChanges.subscribe(change => {
+      if (change == '') {
+        this.ngOnInit()
+      } else {
+        this.arrPokemon = this.arrPokemon.filter(res => {
+          return res.name.match(change);
+        })
+      }
+      console.log(change);
+    });
   }
 
   async onClick(url) {
@@ -66,28 +88,9 @@ export class PokemonComponent implements OnInit {
   }
 
   search() {
-    if (this.input == "") {
-      this.ngOnInit();
 
-    } else {
-      this.arrPokemon = this.arrPokemon.filter(res => {
-        return res.name.match(this.input);
-      })
-    }
   }
-
-  async onSelect($event) {
-    if ($event.target.value == "") {
-      this.ngOnInit();
-    }
-    else {
-      //
-      this.arrPokemon = this.arrPokemon.filter(pok => {
-        return pok.type == $event.target.value;
-      });
-    }
-  }
-
 
 
 }
+

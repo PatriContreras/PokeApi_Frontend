@@ -6,17 +6,20 @@
 </div>
 
 <nav>
-    <div class="form-group" id="input">
-        <label>Buscar por nombre:</label>
-        <input type="text" class="form-control" name="input" id="" [(ngModel)]="input" (ngModelChange)="search()">
-    </div>
-    <div class="form-group" id="select">
-        <label>Buscar por tipo:</label>
-        <select name="types" id="" (change)="onSelect($event)">
-            <option value="">Selecciona un tipo</option>
-            <option [value]="type" *ngFor="let type of types">{{type}}</option>
-        </select>
-    </div>
+    <form [formGroup]="form">
+        <div class="form-group" id="input">
+            <label>Buscar por nombre:</label>
+            <input type="text" class="form-control" name="input" id="" formControlName="name" (change)="search()">
+        </div>
+        <div class="form-group" id="select">
+            <label>Buscar por tipo:</label>
+            <select name="types" id="" formControlName="type">
+                <option value="">Selecciona un tipo</option>
+                <option [value]="type" *ngFor="let type of types">{{type}}</option>
+            </select>
+        </div>
+    </form>
+
 </nav>
 
 <main>
