@@ -43,7 +43,9 @@
         <p>Experiencia base: {{pokemon.base_experience}}</p>
         <p>Altura: {{pokemon.height}}</p>
         <p>Tipos:</p>
-        <p class="tipos" *ngFor="let objType of pokemon.types"> {{objType.type.name}}</p>
+        <ul *ngFor="let objType of pokemon.types">
+            <li>{{objType.type.name}}</li>
+        </ul>
         <img [src]="pokemon.sprites.front_shiny">
         <img [src]="pokemon.sprites.back_shiny">
         <img [src]="pokemon.sprites.front_default">
