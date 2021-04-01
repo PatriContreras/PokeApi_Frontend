@@ -4,36 +4,98 @@
    align-content: center;
    justify-content: center;
    background-color: #0063B1;
-
+    position: relative;
     img {
         height: 300px;
     }
+
+    .animation {
+        width: 250px;
+        line-height: 50px;
+        font-size: 2em;
+        color: #f5ce5b;
+        position: absolute;
+        margin-top: 50px;
+        margin-left: -1100px;
+
+        p {
+            animation-duration: 3s;
+            animation-name: animation;
+          }
+          
+          @keyframes animation {
+            from {
+              margin-top: -100%;
+              //width: 300%
+            }
+          
+            to {
+              margin-top: 0%;
+              //width: 100%;
+            }
+        }
+        
+    }
+ 
 }
+
 
 nav {
     display: flex;
     justify-content: space-evenly;
     background-color: #0063B1;
     padding: 15px;
+    color: #f5ce5b;
     #input {
         width: 20%;
-        font-size: 1.2em;
+        font-size: 1.3em;
+        font-weight: 700;
     }
 
     #select {
         label {
             display: block;
         }
-        width: 20%;
+        width: 15%;
         font-size: 1.3em;
+        font-weight: 700;
         
     }
+
 }
 
 .pokemons {
     margin-top: 20px;
     h1 {
-       font-size: 1.2em; 
+       font-size: 1.2em;
+       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
     }
     
+}
+
+.row {
+    margin-top: 10px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+    h1 {
+        font-size: 2.2em;
+        font-weight: 700;
+       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+}
+.modal-body {
+    color: #0063B1;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: 500;
+    
+}
+
+.btn-success {
+    color: black;
+    font-weight: 700;
+    background-color: #f5ce5b;
 }

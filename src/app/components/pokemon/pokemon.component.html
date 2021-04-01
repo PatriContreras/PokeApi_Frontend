@@ -1,5 +1,8 @@
 <div class="hero">
     <img src="https://logos-marcas.com/wp-content/uploads/2020/05/Pokemon-Emblema.jpg">
+    <div class="animation">
+        <p>¡Haz click en tu pokemon favorito para ver los detalles!</p>
+    </div>
 </div>
 
 <nav>
@@ -19,20 +22,19 @@
 <main>
     <div class="container">
         <div class="row align-items-start">
-            <div class="col-4 pokemons" *ngFor="let pokemon of arrPokemon" [id]="pokemon.url"
+            <div class="col-3 pokemons" *ngFor="let pokemon of arrPokemon" [id]="pokemon.url"
                 (click)="onClick(pokemon.url)">
                 <h1>{{pokemon.name}}</h1>
             </div>
         </div>
     </div>
-
 </main>
 
 
 
 <ng-template #modalContent let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">{{pokemon.name}}</h4>
+        <h1 class="modal-title">{{pokemon.name}}</h1>
         <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
