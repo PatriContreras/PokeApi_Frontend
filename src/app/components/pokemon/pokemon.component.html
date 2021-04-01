@@ -17,7 +17,7 @@
     </div>
 </form>
 
-<ng-template #contenido let-modal>
+<ng-template #modalContent let-modal>
     <div class="modal-header">
         <h4 class="modal-title">{{pokemon.name}}</h4>
         <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
@@ -28,6 +28,7 @@
         <p>Experiencia base: {{pokemon.base_experience}}</p>
         <p>Altura: {{pokemon.height}}</p>
         <p>Tipo: {{this.type}}</p>
+        <img [src]="image">
 
 
 

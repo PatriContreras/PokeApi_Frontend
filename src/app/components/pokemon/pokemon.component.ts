@@ -14,12 +14,13 @@ declare var jQuery: any;
 
 export class PokemonComponent implements OnInit {
 
-  @ViewChild('contenido') contenido: ElementRef;
+  @ViewChild('modalContent') modalContent: ElementRef;
 
   object: any;
   arrPokemon: any[];
   pokemon: any;
   type: string;
+  image: string;
 
   constructor(private pokemonService: PokemonService,
     public modal: NgbModal,
@@ -38,13 +39,21 @@ export class PokemonComponent implements OnInit {
   async onClick(url) {
     this.pokemon = await this.pokemonService.getPokemonByUrl(url)
     console.log(this.pokemon);
-    this.modal.open(this.contenido)
+    this.modal.open(this.modalContent)
 
     const types = this.pokemon.types
     console.log(types[0]);
     const tipo = types[0].type;
     this.type = tipo.name;
     console.log(this.type);
+
+    const obj = this.pokemon.sprites;
+    console.log(obj.front_shiny);
+    this.image = obj.front_shiny;
+
+
+
+
 
 
 
@@ -58,11 +67,6 @@ export class PokemonComponent implements OnInit {
 
 
     // })
-
-
-
-
-
 
 
   }
