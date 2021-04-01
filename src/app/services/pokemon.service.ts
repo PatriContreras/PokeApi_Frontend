@@ -19,7 +19,7 @@ export class PokemonService {
 
   getAllPokemon() {
 
-    return this.httpClient.get(`${this.baseUrl}/pokemon?offset=20&limit=2000`).toPromise()
+    return this.httpClient.get(`${this.baseUrl}/pokemon?offset=0&limit=2000`).toPromise()
   }
   getPokemonByUrl(url) {
     return this.httpClient.get(url).toPromise()
@@ -32,6 +32,8 @@ export class PokemonService {
   getTypes() {
     return this.httpClient.get(`${this.baseUrl}/type/`).toPromise()
   }
+
+
 
 
 }
