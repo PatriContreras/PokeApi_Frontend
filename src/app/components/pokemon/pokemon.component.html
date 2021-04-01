@@ -1,12 +1,12 @@
 <div class="form-group">
     <label>Nombre:</label>
-    <input type="text" class="form-control" name="nombre" id="" [(ngModel)]="nombre" (ngModelChange)="search()">
+    <input type="text" class="form-control" name="input" id="" [(ngModel)]="input" (ngModelChange)="search()">
 </div>
 <div class="form-group">
     <label>Seleccionar por tipo:</label>
-    <select name="types" id="">
-        <option value=""></option>
-        <option value=""></option>
+    <select name="types" id="" (change)="onSelect($event)">
+        <option value="">Selecciona un tipo</option>
+        <option [value]="type" *ngFor="let type of types">{{type}}</option>
     </select>
 </div>
 
@@ -28,12 +28,8 @@
         <p>Tipo: {{this.type}}</p>
         <img [src]="image">
 
-
-
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" (click)="modal.close()">Ok!</button>
     </div>
 </ng-template>
-
-<!-- <button type="button" class="btn btn-outline-danger" (click)="modal.open(contenido)">Lanzar Modal</button> -->

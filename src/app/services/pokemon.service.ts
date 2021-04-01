@@ -18,9 +18,9 @@ export class PokemonService {
   }
 
   getAllPokemon() {
-    return this.httpClient.get(`${this.baseUrl}/pokemon`).toPromise()
-  }
 
+    return this.httpClient.get(`${this.baseUrl}/pokemon?offset=20&limit=2000`).toPromise()
+  }
   getPokemonByUrl(url) {
     return this.httpClient.get(url).toPromise()
   }
@@ -29,20 +29,9 @@ export class PokemonService {
     return this.httpClient.get(`${this.baseUrl}/pokemon/:${id}`).toPromise()
   }
 
+  getPokemonsTypes() {
+    return this.httpClient.get(`${this.baseUrl}/type/`).toPromise()
+  }
 
-
-  // getPokemonsTypes(types) {
-  //   this.arrTypes = this.arrPokemon.
-  // }
-
-  // return new Promise((resolve, reject) => {
-  //   resolve(this.filteredPokemon = this.arrPokemon.filter(types => {
-  //     return types.type === ptype
-  //   }))
-  // })
-
-  // getPokemonByName() {
-  //   return this.httpClient.get(`${this.baseUrl}/pokemon`)
-  // }
 
 }
