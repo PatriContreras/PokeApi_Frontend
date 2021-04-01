@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DetailsComponent } from './components/details/details.component';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 
 const routes: Routes = [
@@ -8,8 +7,6 @@ const routes: Routes = [
   {
     path: 'home', component: PokemonComponent
   },
-  { path: 'pokemon', component: DetailsComponent },
-
   { path: '**', redirectTo: 'home' }
 ];
 

@@ -22,4 +22,8 @@ export class PokemonService {
     return this.httpClient.get(url).toPromise()
   }
 
+  getPokemonComplete(id) {
+    return this.httpClient.get(`${this.baseUrl}/pokemon/:${id}`).toPromise()
+  }
+
 }

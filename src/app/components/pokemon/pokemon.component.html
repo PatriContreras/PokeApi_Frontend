@@ -2,10 +2,8 @@
 
 <div *ngFor="let pokemon of arrPokemon" [id]="pokemon.url" (click)="onClick(pokemon.url)">
     <h1>{{pokemon.name}}</h1>
-    <button [routerLink]="['/pokemon']">Pulsa</button>
 </div>
 
-<app-details></app-details>
 
 <form>
     <div>
@@ -21,12 +19,19 @@
 
 <ng-template #contenido let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Titulo</h4>
+        <h4 class="modal-title">{{pokemon.name}}</h4>
         <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <app-details></app-details>
+    <div class="modal-body">
+        <p>Experiencia base: {{pokemon.base_experience}}</p>
+        <p>Altura: {{pokemon.height}}</p>
+        <p>Tipo: {{this.type}}</p>
+
+
+
+    </div>
     <div class="modal-footer">
         <button class="btn btn-success" (click)="modal.close()">Ok!</button>
     </div>

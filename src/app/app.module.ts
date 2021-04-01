@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DetailsComponent } from './components/details/details.component';
 
 
 
@@ -13,7 +12,6 @@ import { DetailsComponent } from './components/details/details.component';
   declarations: [
     AppComponent,
     PokemonComponent,
-    DetailsComponent
   ],
   imports: [
     BrowserModule,
