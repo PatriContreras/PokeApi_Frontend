@@ -48,15 +48,20 @@ export class PokemonComponent implements OnInit {
     this.types = this.arrTypes.map(type => {
       return type.name
     })
-
-    console.log(this.types);
-
-
   }
 
   async onClick(url) {
     this.pokemon = await this.pokemonService.getPokemonByUrl(url)
     this.modal.open(this.modalContent)
+
+    console.log(this.pokemon);
+    this.types = this.pokemon.types;
+    console.log(this.types);
+    this.resultado = this.types[0].type;
+    console.log(this.resultado.name);
+
+    this.resultado = this.types[1].type;
+    console.log(this.resultado.name);
 
   }
 
@@ -82,5 +87,7 @@ export class PokemonComponent implements OnInit {
       });
     }
   }
+
+
 
 }
