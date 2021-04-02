@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Pokemon } from 'src/app/models/pokemon';
+import { PokemonDetail } from 'src/app/models/pokemon-detail';
 
 
 @Component({
@@ -16,20 +18,14 @@ export class PokemonComponent implements OnInit {
   @ViewChild('modalContent') modalContent: ElementRef;
 
   object: any;
-  allPokemon: any[];
-  filteredPokemon: any[];
-  pokemon: any;
+  allPokemon: Pokemon[];
+  filteredPokemon: Pokemon[];
+  pokemon: PokemonDetail;
   type: string;
   image: string;
-  //filteredArr: any[];
-  //input: string;
   objTypes: any;
   arrTypes: any;
-  //resultado: any;
   types: any[];
-  //pokemonByType: any[];
-  //arrFiltrado: any[];
-  //filteredx: any[];
 
   form: FormGroup
 
@@ -54,14 +50,12 @@ export class PokemonComponent implements OnInit {
     this.allPokemon = this.object.results;
     this.filteredPokemon = this.object.results;
 
-
     this.objTypes = await this.pokemonService.getTypes()
     this.arrTypes = this.objTypes.results;
 
-
     this.types = this.arrTypes.map(type => {
       return type.name
-    })
+    });
 
 
     this.form.controls['name'].valueChanges.subscribe(change => {
@@ -78,19 +72,12 @@ export class PokemonComponent implements OnInit {
   async onClick(url) {
     this.pokemon = await this.pokemonService.getPokemonByUrl(url)
     this.modal.open(this.modalContent)
-
-
     this.types = this.pokemon.types;
-    // this.resultado = this.types[0].type;
-    // this.resultado = this.types[1].type;
-
-
   }
 
 
   onChange($event) {
-    console.log($event.target.value);
-
+    // Método de filtrado por tipo de pokemon sin realizar por problemas con la API.
   }
 
   checkValidator(controlName, validatorName) {
