@@ -8,12 +8,15 @@
 <nav>
     <form [formGroup]="form">
         <div class="container">
-            <div class="form-group" id="input">
+            <div class="form-group" id="inputContainer">
                 <label>Buscar por nombre:</label>
                 <input type="text" class="form-control" name="input" id="" formControlName="name">
+                <p *ngIf="checkValidator('name', 'pattern')">Max. 100 caracteres</p>
+                <p *ngIf="checkValidator('name', 'pattern')">No se admiten caracteres especiales</p>
+
 
             </div>
-            <div class="form-group" id="select">
+            <div class="form-group" id="selectContainer">
                 <label>Buscar por tipo:</label>
                 <select name="types" id="" formControlName="type" (change)="onChange($event)">
                     <option value="">Selecciona un tipo</option>
@@ -29,7 +32,7 @@
 <main>
     <div class="container">
         <div class="row align-items-start">
-            <div class="col-3 pokemons" *ngFor="let pokemon of arrPokemon" [id]="pokemon.url"
+            <div class="col-3 pokemons" *ngFor="let pokemon of filteredPokemon" [id]="pokemon.url"
                 (click)="onClick(pokemon.url)">
                 <h1>{{pokemon.name}}</h1>
             </div>

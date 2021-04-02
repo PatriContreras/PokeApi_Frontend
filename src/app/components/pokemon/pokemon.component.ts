@@ -16,19 +16,20 @@ export class PokemonComponent implements OnInit {
   @ViewChild('modalContent') modalContent: ElementRef;
 
   object: any;
-  arrPokemon: any[];
+  allPokemon: any[];
+  filteredPokemon: any[];
   pokemon: any;
   type: string;
   image: string;
-  filteredArr: any[];
-  input: string;
+  //filteredArr: any[];
+  //input: string;
   objTypes: any;
   arrTypes: any;
-  resultado: any;
+  //resultado: any;
   types: any[];
-  pokemonByType: any[];
-  arrFiltrado: any[];
-  filteredx: any[];
+  //pokemonByType: any[];
+  //arrFiltrado: any[];
+  //filteredx: any[];
 
   form: FormGroup
 
@@ -36,10 +37,12 @@ export class PokemonComponent implements OnInit {
     private pokemonService: PokemonService,
     public modal: NgbModal,
   ) {
-    this.arrPokemon = [];
+    this.allPokemon = [];
 
     this.form = new FormGroup({
-      name: new FormControl(''),
+      name: new FormControl('', [
+        Validators.pattern(/^[a-zA-Z0-9]{0,100}$/)
+      ]),
       type: new FormControl('')
     })
   }
@@ -48,7 +51,9 @@ export class PokemonComponent implements OnInit {
   async ngOnInit() {
 
     this.object = await this.pokemonService.getAllPokemon()
-    this.arrPokemon = this.object.results;
+    this.allPokemon = this.object.results;
+    this.filteredPokemon = this.object.results;
+
 
     this.objTypes = await this.pokemonService.getTypes()
     this.arrTypes = this.objTypes.results;
@@ -63,11 +68,10 @@ export class PokemonComponent implements OnInit {
       if (change == '') {
         this.ngOnInit()
       } else {
-        this.arrPokemon = this.arrPokemon.filter(res => {
-          return res.name.match(change);
+        this.filteredPokemon = this.allPokemon.filter(res => {
+          return res.name.toLowerCase().match(change.toLowerCase());
         })
       }
-      console.log(change);
     });
   }
 
@@ -75,14 +79,11 @@ export class PokemonComponent implements OnInit {
     this.pokemon = await this.pokemonService.getPokemonByUrl(url)
     this.modal.open(this.modalContent)
 
-    console.log(this.pokemon);
-    this.types = this.pokemon.types;
-    console.log(this.types);
-    this.resultado = this.types[0].type;
-    console.log(this.resultado.name);
 
-    this.resultado = this.types[1].type;
-    console.log(this.resultado.name);
+    this.types = this.pokemon.types;
+    // this.resultado = this.types[0].type;
+    // this.resultado = this.types[1].type;
+
 
   }
 
@@ -92,6 +93,8 @@ export class PokemonComponent implements OnInit {
 
   }
 
+  checkValidator(controlName, validatorName) {
+    return this.form.get(controlName).hasError(validatorName);
+  }
 
 }
-
